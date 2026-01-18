@@ -26,4 +26,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build and assemble with Gradle
       run: ./gradlew assembleRelease
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v6
+      with:
+        path: app/build/outputs/apk/*/app-*.apk
       

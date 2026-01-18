@@ -6,6 +6,8 @@ on:
       version:
         description: The version of the app.
         required: true
+  pull_request:
+    
 
 
 jobs:

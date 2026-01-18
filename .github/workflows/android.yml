@@ -1,11 +1,10 @@
 name: Android CI
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      version:
-        description: The version of the app.
-        required: true
   pull_request:
     
 

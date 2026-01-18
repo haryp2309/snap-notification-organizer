@@ -78,22 +78,22 @@ object NotificationHelper {
     }
 
     private fun createShortcut(context: Context, sender: String, icon: Icon?) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            val shortcutManager = context.getSystemService(ShortcutManager::class.java)
-            val shortcutIntent = Intent(context, MainActivity::class.java).apply { action = Intent.ACTION_VIEW }
+        val shortcutManager = context.getSystemService(ShortcutManager::class.java)
+        val shortcutIntent = Intent(context, MainActivity::class.java).apply { action = Intent.ACTION_VIEW }
 
-            val shortcutBuilder = ShortcutInfo.Builder(context, sender)
-                .setShortLabel(sender)
-                .setLongLabel(sender)
-                .setIntent(shortcutIntent)
-                .setLongLived(true)
+        val shortcutBuilder = ShortcutInfo.Builder(context, sender)
+            .setShortLabel(sender)
+            .setLongLabel(sender)
+            .setIntent(shortcutIntent)
+            .setLongLived(true)
 
-            if (icon != null) {
-                shortcutBuilder.setIcon(icon)
-            } else {
-                shortcutBuilder.setIcon(Icon.createWithResource(context, R.drawable.ic_notification_small))
-            }
+        if (icon != null) {
+            shortcutBuilder.setIcon(icon)
+        } else {
+            shortcutBuilder.setIcon(Icon.createWithResource(context, R.drawable.ic_notification_small))
+        }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             shortcutManager.pushDynamicShortcut(shortcutBuilder.build())
         }
     }
